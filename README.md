@@ -1,9 +1,7 @@
 # Exercise-Correction-System
 
-# Bicep Curl Counter
 
-![Project Demo](demo.gif)
-
+![Project Demo]
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
