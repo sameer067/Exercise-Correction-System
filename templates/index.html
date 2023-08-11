@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bicep Curl Counter</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Rep Counter</h1>
+    <div id="videoContainer">
+        <img src="{{ url_for('video_feed') }}" id="videoFeed">
+    </div>
+    <button id="startButton">Start Bicep Curl Counter</button>
+    <script>
+        var counterRunning = false; // Track the counter status
+        
+        document.getElementById('startButton').addEventListener('click', function() {
+            var video = document.getElementById('videoFeed');
+            
+            if (!counterRunning) { // If counter is not running, start it
+                document.getElementById('videoFeed').style.display = 'block';
+                counterRunning = true;
+                this.innerHTML = 'Stop Bicep Curl Counter'; // Change button text
+                
+                if (navigator.mediaDevices.getUserMedia) {
+                    navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function (stream) {
+                        video.srcObject = stream;
+                    })
+                    .catch(function (error) {
+                        console.error('Error accessing the camera:', error);
+                    });
+                }
+            } else { // If counter is running, stop it
+                counterRunning = false;
+                this.innerHTML = 'Start Bicep Curl Counter'; // Change button text
+                fetch('/stop_counter'); // Send a request to stop the counter loop
+            }
+        });
+    </script>
+</body>
+</html>
