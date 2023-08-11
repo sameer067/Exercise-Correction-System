@@ -1,7 +1,6 @@
 # Exercise-Correction-System
 
 
-![Project Demo]
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
